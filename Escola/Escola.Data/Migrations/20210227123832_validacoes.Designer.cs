@@ -4,14 +4,16 @@ using Escola.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Escola.Data.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20210227123832_validacoes")]
+    partial class validacoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,11 +33,14 @@ namespace Escola.Data.Migrations
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(150)");
+
+                    b.Property<int>("TurmaID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
