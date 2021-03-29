@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ProjetoEscola.API.AutoMapper;
 using System;
 using System.IO;
 using System.Reflection;
@@ -32,6 +33,8 @@ namespace Escola
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddAutoMapper(typeof(ConfigurationMapping));
 
             // Diferenças entre Transient, Scoped e Singleton (ciclos de vida):
             // Transient: sempre que for solicitado um objeto do conteiner de injeção de

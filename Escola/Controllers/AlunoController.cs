@@ -1,7 +1,10 @@
-﻿using Escola.Data.Interface;
+﻿using AutoMapper;
+using Escola.Data.Interface;
 using Escola.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoEscola.API.DTO;
+using System.Collections.Generic;
 
 namespace Escola.Controllers
 {
@@ -11,11 +14,13 @@ namespace Escola.Controllers
     //[Authorize] // Aqui o controller todo precisa de autorização
     public class AlunoController : ControllerBase
     {
-        private readonly IAlunoRepository _repo;
+        private readonly IAlunoRepository _repoAluno;
+        private readonly IMapper _mapper;
 
-        public AlunoController(IAlunoRepository repo)
+        public AlunoController(IAlunoRepository repoAluno, IMapper mapper)
         {
-            _repo = repo;
+            _repoAluno = repoAluno;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -36,7 +41,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.SelecionarTudoCompleto());
+                var alunos = _repoAluno.SelecionarTudoCompleto();
+                return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
             }
             catch (System.Exception)
             {
@@ -50,7 +56,7 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.SelecionarNome(nome));
+                return Ok(_repoAluno.SelecionarNome(nome));
             }
             catch (System.Exception)
             {
@@ -64,7 +70,7 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.SelecionarEmail(email));
+                return Ok(_repoAluno.SelecionarEmail(email));
             }
             catch (System.Exception)
             {
@@ -92,7 +98,7 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.Selecionar(id));
+                return Ok(_repoAluno.Selecionar(id));
             }
             catch (System.Exception)
             {
@@ -124,8 +130,8 @@ namespace Escola.Controllers
             {
                 if (string.IsNullOrEmpty(aluno.Cpf) || string.IsNullOrEmpty(aluno.Nome))
                     return BadRequest("Cpf ou Nome não foram informados.");
-                _repo.IncluirAluno(aluno);
-                return Ok(_repo.SelecionarTudo());
+                _repoAluno.IncluirAluno(aluno);
+                return Ok(_repoAluno.SelecionarTudo());
             }
             catch (System.Exception)
             {
@@ -152,8 +158,8 @@ namespace Escola.Controllers
         {
             try
             {
-                _repo.AlterarAluno(aluno);
-                return Ok(_repo.SelecionarTudo());
+                _repoAluno.AlterarAluno(aluno);
+                return Ok(_repoAluno.SelecionarTudo());
             }
             catch (System.Exception)
             {
@@ -179,8 +185,8 @@ namespace Escola.Controllers
         {
             try
             {
-                _repo.Excluir(id);
-                return Ok(_repo.SelecionarTudo());
+                _repoAluno.Excluir(id);
+                return Ok(_repoAluno.SelecionarTudo());
             }
             catch (System.Exception)
             {

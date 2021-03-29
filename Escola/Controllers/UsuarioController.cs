@@ -1,7 +1,10 @@
-﻿using Escola.Data.Interface;
+﻿using AutoMapper;
+using Escola.Data.Interface;
 using Escola.Domain;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoEscola.API.DTO;
 using System;
+using System.Collections.Generic;
 
 namespace Escola.Controllers
 {
@@ -10,9 +13,30 @@ namespace Escola.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepo;
-        public UsuarioController(IUsuarioRepository usuarioRepo)
+        private readonly IMapper _mapper;
+
+        public UsuarioController(IUsuarioRepository usuarioRepo, IMapper mapper)
         {
             _usuarioRepo = usuarioRepo ?? throw new ArgumentNullException("UsuarioRepository não pode ser nulo");
+            _mapper = mapper;
+
+        }
+
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
+        public IActionResult Get()
+        {
+            try
+            {
+                var usuarios = _usuarioRepo.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<UsuarioDto>>(usuarios));
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(500);
+            }
         }
 
         /// <summary>

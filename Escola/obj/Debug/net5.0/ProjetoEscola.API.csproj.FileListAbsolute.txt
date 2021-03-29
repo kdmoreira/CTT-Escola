@@ -69,3 +69,5 @@ C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\obj\Debug\net5.0\ref\Pro
 C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\obj\Debug\net5.0\ProjetoEscola.API.xml
 C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\obj\Debug\net5.0\ProjetoEscola.API.pdb
 C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\obj\Debug\net5.0\ProjetoEscola.API.genruntimeconfig.cache
+C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

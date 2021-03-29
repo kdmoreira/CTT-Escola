@@ -70,7 +70,7 @@ namespace Escola.Controllers
 
                 return Ok(token);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

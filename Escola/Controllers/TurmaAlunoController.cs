@@ -1,6 +1,9 @@
-﻿using Escola.Data.Interface;
+﻿using AutoMapper;
+using Escola.Data.Interface;
 using Escola.Domain;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoEscola.API.DTO;
+using System.Collections.Generic;
 
 namespace Escola.Controllers
 {
@@ -10,10 +13,12 @@ namespace Escola.Controllers
     public class TurmaAlunoController : ControllerBase
     {
         private readonly ITurmaAlunoRepository _repo;
+        private readonly IMapper _mapper;
 
-        public TurmaAlunoController(ITurmaAlunoRepository repo)
+        public TurmaAlunoController(ITurmaAlunoRepository repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -33,7 +38,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.SelecionarTudoCompleto());
+                var turmasAlunos = _repo.SelecionarTudoCompleto();
+                return Ok(_mapper.Map<IEnumerable<TurmaAlunoDto>>(turmasAlunos));
             }
             catch (System.Exception)
             {
