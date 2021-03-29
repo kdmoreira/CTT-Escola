@@ -1,14 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Escola.Data.Repository;
+﻿using Escola.Data.Interface;
 using Escola.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Escola.Data.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Escola.Controllers
 {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v+ojRMfc/igq7aZEIAAO3wZGA0C1X3Bv4X7QT5gYSptb0tBNU5pnA2f/p/nRKet6Gz5J4q/CtVJQsPZFoqufkQ==",
+  "dgSpecHash": "5cosjoC7u+AvlrhMPD+rwj9jYCF6tJ/s4t9jAtTjgJal5ORMeaYKe0GgwFSq5sojkGkg7Dlg/X5LzfUjBHbFZw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Karina Moreira\\capinas-tech-talents\\escola-api\\Escola\\Escola\\ProjetoEscola.csproj",
+  "projectFilePath": "C:\\Users\\Karina Moreira\\C#\\campinas-tech-talents\\Escola\\ProjetoEscola.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Karina Moreira\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Karina Moreira\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

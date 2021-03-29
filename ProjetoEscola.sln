@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoEscola", "Escola\ProjetoEscola.csproj", "{A5A23972-35F4-4B7B-B187-324A6DAC693F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoEscola.API", "Escola\ProjetoEscola.API.csproj", "{A5A23972-35F4-4B7B-B187-324A6DAC693F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoEscola.Domain", "Escola.Domain\ProjetoEscola.Domain.csproj", "{DFAF627A-C7F5-4D0E-80C7-FD1F31B53702}"
 EndProject

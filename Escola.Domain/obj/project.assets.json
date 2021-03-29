@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Karina Moreira\\capinas-tech-talents\\escola-api\\Escola\\Escola.Domain\\ProjetoEscola.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Karina Moreira\\C#\\campinas-tech-talents\\Escola.Domain\\ProjetoEscola.Domain.csproj",
       "projectName": "ProjetoEscola.Domain",
-      "projectPath": "C:\\Users\\Karina Moreira\\capinas-tech-talents\\escola-api\\Escola\\Escola.Domain\\ProjetoEscola.Domain.csproj",
+      "projectPath": "C:\\Users\\Karina Moreira\\C#\\campinas-tech-talents\\Escola.Domain\\ProjetoEscola.Domain.csproj",
       "packagesPath": "C:\\Users\\Karina Moreira\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Karina Moreira\\capinas-tech-talents\\escola-api\\Escola\\Escola.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Karina Moreira\\C#\\campinas-tech-talents\\Escola.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

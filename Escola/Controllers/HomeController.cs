@@ -1,13 +1,9 @@
 ﻿using Escola.Data.Interface;
 using Escola.Domain;
 using Escola.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Escola.Controllers
 {
