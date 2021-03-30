@@ -1,6 +1,9 @@
-﻿using Escola.Data.Interface;
+﻿using AutoMapper;
+using Escola.Data.Interface;
 using Escola.Domain;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoEscola.API.DTO;
+using System.Collections.Generic;
 
 namespace Escola.Controllers
 {
@@ -9,11 +12,13 @@ namespace Escola.Controllers
     [ApiController]
     public class AulaController : ControllerBase
     {
-        private readonly IAulaRepository _repo;
+        private readonly IAulaRepository _repoAula;
+        private readonly IMapper _mapper;
 
-        public AulaController(IAulaRepository repo)
+        public AulaController(IAulaRepository repo, IMapper mapper)
         {
-            _repo = repo;
+            _repoAula = repo;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -33,7 +38,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.SelecionarTudoCompleto());
+                List<Aula> aulas = _repoAula.SelecionarTudoCompleto();
+                return Ok(_mapper.Map<IEnumerable<AulaDto>>(aulas));
             }
             catch (System.Exception)
             {
@@ -59,7 +65,7 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.Selecionar(id));
+                return Ok(_repoAula.Selecionar(id));
             }
             catch (System.Exception)
             {
@@ -89,8 +95,8 @@ namespace Escola.Controllers
             {
                 if (string.IsNullOrEmpty(aula.Assunto))
                     return BadRequest("Assunto da aula não foi informado.");
-                _repo.Incluir(aula);
-                return Ok(_repo.SelecionarTudo());
+                _repoAula.Incluir(aula);
+                return Ok(_repoAula.SelecionarTudo());
             }
             catch (System.Exception)
             {
@@ -118,8 +124,8 @@ namespace Escola.Controllers
         {
             try
             {
-                _repo.Alterar(aula);
-                return Ok(_repo.SelecionarTudo());
+                _repoAula.Alterar(aula);
+                return Ok(_repoAula.SelecionarTudo());
             }
             catch (System.Exception)
             {
@@ -145,8 +151,8 @@ namespace Escola.Controllers
         {
             try
             {
-                _repo.Excluir(id);
-                return Ok(_repo.SelecionarTudo());
+                _repoAula.Excluir(id);
+                return Ok(_repoAula.SelecionarTudo());
             }
             catch (System.Exception)
             {

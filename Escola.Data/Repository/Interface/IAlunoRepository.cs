@@ -5,9 +5,8 @@ namespace Escola.Data.Interface
 {
     public interface IAlunoRepository : IBaseRepository<Aluno>
     {
-        List<Aluno> SelecionarTudoCompleto();
-        List<Aluno> SelecionarNome(string nome);
-        List<Aluno> SelecionarEmail(string email);
+        List<Aluno> SelecionarAlunos(string nome);
+        Aluno SelecionarPorCpf(string cpf);
         string AlterarAluno(Aluno aluno);
         string IncluirAluno(Aluno aluno);
     }

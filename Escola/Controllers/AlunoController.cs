@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoEscola.API.DTO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Escola.Controllers
 {
@@ -26,6 +27,8 @@ namespace Escola.Controllers
         /// <summary>
         /// Retorna todos os alunos registrados.
         /// </summary>
+        /// <param name="nome">Nome do aluno.</param>
+        /// <param name="cpf">CPF do aluno.</param>
         /// <remarks>
         /// Exemplo de request:
         /// Get/api/aluno
@@ -37,12 +40,20 @@ namespace Escola.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(500)]
         //[Authorize] // É possível aplicar autorização apenas para métodos também
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] string nome, string cpf)
         {
             try
             {
-                var alunos = _repoAluno.SelecionarTudoCompleto();
-                return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
+                if (cpf != null)
+                {
+                    Aluno aluno = _repoAluno.SelecionarPorCpf(cpf);
+                    return Ok(_mapper.Map<AlunoDto>(aluno));
+                }
+                else
+                {
+                    List<Aluno> alunos = _repoAluno.SelecionarAlunos(nome);
+                    return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
+                }
             }
             catch (System.Exception)
             {
@@ -50,33 +61,6 @@ namespace Escola.Controllers
             }
         }
 
-        // Selecionando alunos pelo nome
-        [HttpGet("/nome")]
-        public IActionResult ByName([FromBody] string nome)
-        {
-            try
-            {
-                return Ok(_repoAluno.SelecionarNome(nome));
-            }
-            catch (System.Exception)
-            {
-                return BadRequest("Bad request");
-            }
-        }
-
-        // Selecionando alunos pelo Email
-        [HttpGet("/email")]
-        public IActionResult ByEmail(string email)
-        {
-            try
-            {
-                return Ok(_repoAluno.SelecionarEmail(email));
-            }
-            catch (System.Exception)
-            {
-                return StatusCode(500);
-            }
-        }
 
         /// <summary>
         /// Retorna um aluno pelo id.
@@ -98,7 +82,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repoAluno.Selecionar(id));
+                Aluno aluno = _repoAluno.Selecionar(id);
+                return Ok(_mapper.Map<AlunoDto>(aluno));
             }
             catch (System.Exception)
             {
@@ -122,7 +107,7 @@ namespace Escola.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        [Authorize(Roles = "marketing,manager")] // Se alguém não autorizado tentar acessar, ocorrerá um Forbidden
+        [Authorize(Roles = "marketing, manager")] // Se alguém não autorizado tentar acessar, ocorrerá um Forbidden
         // Também serve para a controller inteira
         public IActionResult Post([FromBody] Aluno aluno)
         {
@@ -130,8 +115,11 @@ namespace Escola.Controllers
             {
                 if (string.IsNullOrEmpty(aluno.Cpf) || string.IsNullOrEmpty(aluno.Nome))
                     return BadRequest("Cpf ou Nome não foram informados.");
+
                 _repoAluno.IncluirAluno(aluno);
-                return Ok(_repoAluno.SelecionarTudo());
+                List<Aluno> alunos = _repoAluno.SelecionarTudo();
+
+                return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
             }
             catch (System.Exception)
             {
@@ -159,7 +147,9 @@ namespace Escola.Controllers
             try
             {
                 _repoAluno.AlterarAluno(aluno);
-                return Ok(_repoAluno.SelecionarTudo());
+                List<Aluno> alunos = _repoAluno.SelecionarTudo();
+
+                return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
             }
             catch (System.Exception)
             {
@@ -186,7 +176,9 @@ namespace Escola.Controllers
             try
             {
                 _repoAluno.Excluir(id);
-                return Ok(_repoAluno.SelecionarTudo());
+                List<Aluno> alunos = _repoAluno.SelecionarTudo();
+
+                return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
             }
             catch (System.Exception)
             {

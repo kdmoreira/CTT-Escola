@@ -4,7 +4,7 @@
         <name>ProjetoEscola.API</name>
     </assembly>
     <members>
-        <member name="M:Escola.Controllers.AlunoController.GetAll">
+        <member name="M:Escola.Controllers.AlunoController.GetAll(System.String,System.String)">
             <summary>
             Retorna todos os alunos registrados.
             </summary>

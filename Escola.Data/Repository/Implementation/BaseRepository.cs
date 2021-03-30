@@ -30,7 +30,7 @@ namespace Escola.Data.Repository
             return _contexto.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
-        public List<T> SelecionarTudo()
+        public virtual List<T> SelecionarTudo()
         {
             return _contexto.Set<T>().ToList();
         }

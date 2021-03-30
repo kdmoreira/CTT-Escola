@@ -25,11 +25,13 @@ namespace ProjetoEscola.API.AutoMapper
 
             CreateMap<TurmaAluno, TurmaAlunoDto>()
                 .ForMember(dest => dest.Aluno, opt => opt.MapFrom(src => src.Aluno.Nome))
-                .ForMember(dest => dest.Turma, opt => opt.MapFrom(src => src.Turma.Curso));
+                .ForMember(dest => dest.Turma, opt => opt.MapFrom(src => src.Turma.Curso))
+                .ReverseMap();
 
             CreateMap<TurmaProfessor, TurmaProfessorDto>()
                 .ForMember(dest => dest.Professor, opt => opt.MapFrom(src => src.Professor.Nome))
-                .ForMember(dest => dest.Turma, opt => opt.MapFrom(src => src.Turma.Curso));
+                .ForMember(dest => dest.Turma, opt => opt.MapFrom(src => src.Turma.Curso))
+                .ReverseMap();
         }
     }
 }

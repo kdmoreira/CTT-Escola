@@ -15,22 +15,27 @@ namespace Escola.Data.Repository
             _guid = Guid.NewGuid();
         }
 
-        // Incluindo ordenação alfabética de nome
-        public List<Aluno> SelecionarTudoCompleto()
+        // Busca todos os alunos, podendo buscar por CPF ou contendo nome
+        public List<Aluno> SelecionarAlunos(string nome)
+        {
+            List<Aluno> alunos = _contexto.Aluno
+                .Include(x => x.TurmaAluno).OrderBy(x => x.Nome)
+                .ToList();
+
+            if (nome != null)
+            {
+                return alunos.Where(a => a.Nome.Contains(nome)).ToList();
+                
+            }
+            return alunos;
+        }
+
+        public Aluno SelecionarPorCpf(string cpf)
         {
             return _contexto.Aluno
                 .Include(x => x.TurmaAluno).OrderBy(x => x.Nome)
-                .ToList();
-        }
-        public List<Aluno> SelecionarNome(string nome)
-        {
-            return _contexto.Aluno.Include(x => x.Nome == nome).ToList();
-        }
-        public List<Aluno> SelecionarEmail(string email)
-        {
-            return _contexto.Aluno
-                .Include(x => x.Nome.Contains(email))
-                .ToList();
+                .FirstOrDefault(a => a.Cpf.Equals(cpf));
+
         }
 
         public string IncluirAluno(Aluno aluno)
