@@ -8,6 +8,8 @@
             <summary>
             Retorna todos os alunos registrados.
             </summary>
+            <param name="nome">Nome do aluno.</param>
+            <param name="cpf">CPF do aluno.</param>
             <remarks>
             Exemplo de request:
             Get/api/aluno

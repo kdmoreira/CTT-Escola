@@ -1,7 +1,10 @@
-﻿using Escola.Data.Interface;
+﻿using AutoMapper;
+using Escola.Data.Interface;
 using Escola.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ProjetoEscola.API.DTO;
+using System.Collections.Generic;
 
 namespace Escola.Controllers
 {
@@ -13,11 +16,13 @@ namespace Escola.Controllers
         private readonly ITurmaRepository _repo;
         // Caso queiramos monitorar nosso TurmaController (note no construtor também):
         private readonly ILogger _logger;
+        private readonly IMapper _mapper;
 
-        public TurmaController(ITurmaRepository repo, ILogger<TurmaController> logger)
+        public TurmaController(ITurmaRepository repo, ILogger<TurmaController> logger, IMapper mapper)
         {
             _repo = repo;
             _logger = logger;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -38,7 +43,8 @@ namespace Escola.Controllers
             // Uma recomendação é loggar o que importa, como as exceções
             try
             {
-                return Ok(_repo.SelecionarTudoCompleto());
+                List<Turma> turmas = _repo.SelecionarTudoCompleto();
+                return Ok(_mapper.Map<IEnumerable<TurmaDto>>(turmas));
             }
             catch (System.Exception ex)
             {
@@ -66,7 +72,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.Selecionar(id));
+                Turma turma = _repo.Selecionar(id);
+                return Ok(_mapper.Map<TurmaDto>(turma));
             }
             catch (System.Exception)
             {
@@ -96,8 +103,10 @@ namespace Escola.Controllers
             {
                 if (string.IsNullOrEmpty(turma.Curso) || turma.Edicao == 0)
                     return BadRequest("Curso ou Edição não foram informados.");
+                
                 _repo.Incluir(turma);
-                return Ok(_repo.SelecionarTudo());
+                List<Turma> turmas = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<TurmaDto>(turmas));
             }
             catch (System.Exception)
             {
@@ -125,7 +134,8 @@ namespace Escola.Controllers
             try
             {
                 _repo.Alterar(turma);
-                return Ok(_repo.SelecionarTudo());
+                List<Turma> turmas = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<TurmaDto>(turmas));
             }
             catch (System.Exception)
             {
@@ -152,7 +162,8 @@ namespace Escola.Controllers
             try
             {
                 _repo.Excluir(id);
-                return Ok(_repo.SelecionarTudo());
+                List<Turma> turmas = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<TurmaDto>(turmas));
             }
             catch (System.Exception)
             {

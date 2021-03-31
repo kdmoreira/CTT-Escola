@@ -1,6 +1,9 @@
-﻿using Escola.Data.Interface;
+﻿using AutoMapper;
+using Escola.Data.Interface;
 using Escola.Domain;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoEscola.API.DTO;
+using System.Collections.Generic;
 
 namespace Escola.Controllers
 {
@@ -10,10 +13,12 @@ namespace Escola.Controllers
     public class ProfessorController : ControllerBase
     {
         private readonly IProfessorRepository _repo;
+        private readonly IMapper _mapper;
 
-        public ProfessorController(IProfessorRepository repo)
+        public ProfessorController(IProfessorRepository repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -33,7 +38,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.SelecionarTudoCompleto());
+                List<Professor> professores = _repo.SelecionarTudoCompleto();
+                return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professores));
             }
             catch (System.Exception)
             {
@@ -59,7 +65,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.Selecionar(id));
+                Professor professor = _repo.Selecionar(id);
+                return Ok(_mapper.Map<ProfessorDto>(professor));
             }
             catch (System.Exception)
             {
@@ -89,8 +96,10 @@ namespace Escola.Controllers
             {
                 if (string.IsNullOrEmpty(professor.Nome) || string.IsNullOrEmpty(professor.Email))
                     return BadRequest("Nome ou Email não foram informados.");
+                
                 _repo.Incluir(professor);
-                return Ok(_repo.SelecionarTudo());
+                List<Professor> professores = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professores));
             }
             catch (System.Exception)
             {
@@ -118,7 +127,8 @@ namespace Escola.Controllers
             try
             {
                 _repo.Alterar(professor);
-                return Ok(_repo.SelecionarTudo());
+                List<Professor> professores = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professores));
             }
             catch (System.Exception)
             {
@@ -145,7 +155,8 @@ namespace Escola.Controllers
             try
             {
                 _repo.Excluir(id);
-                return Ok(_repo.SelecionarTudo());
+                List<Professor> professores = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professores));
             }
             catch (System.Exception)
             {

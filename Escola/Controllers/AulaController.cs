@@ -65,7 +65,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repoAula.Selecionar(id));
+                Aula aula = _repoAula.Selecionar(id);
+                return Ok(_mapper.Map<AulaDto>(aula));
             }
             catch (System.Exception)
             {
@@ -96,7 +97,8 @@ namespace Escola.Controllers
                 if (string.IsNullOrEmpty(aula.Assunto))
                     return BadRequest("Assunto da aula não foi informado.");
                 _repoAula.Incluir(aula);
-                return Ok(_repoAula.SelecionarTudo());
+                List<Aula> aulas = _repoAula.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<AulaDto>>(aulas));
             }
             catch (System.Exception)
             {
@@ -125,7 +127,8 @@ namespace Escola.Controllers
             try
             {
                 _repoAula.Alterar(aula);
-                return Ok(_repoAula.SelecionarTudo());
+                List<Aula> aulas = _repoAula.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<AulaDto>>(aulas));
             }
             catch (System.Exception)
             {
@@ -152,7 +155,8 @@ namespace Escola.Controllers
             try
             {
                 _repoAula.Excluir(id);
-                return Ok(_repoAula.SelecionarTudo());
+                List<Aula> aulas = _repoAula.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<AulaDto>>(aulas));
             }
             catch (System.Exception)
             {

@@ -38,7 +38,7 @@ namespace Escola.Controllers
         {
             try
             {
-                var turmasAlunos = _repo.SelecionarTudoCompleto();
+                List<TurmaAluno> turmasAlunos = _repo.SelecionarTudoCompleto();
                 return Ok(_mapper.Map<IEnumerable<TurmaAlunoDto>>(turmasAlunos));
             }
             catch (System.Exception)
@@ -65,7 +65,8 @@ namespace Escola.Controllers
         {
             try
             {
-                return Ok(_repo.Selecionar(id));
+                TurmaAluno turmaAluno = _repo.Selecionar(id);
+                return Ok(_mapper.Map<TurmaAlunoDto>(turmaAluno));
             }
             catch (System.Exception)
             {
@@ -92,7 +93,8 @@ namespace Escola.Controllers
             try
             {
                 _repo.Incluir(turmaAluno);
-                return Ok(_repo.SelecionarTudo());
+                List<TurmaAluno> turmasAlunos = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<TurmaAlunoDto>>(turmasAlunos));
             }
             catch (System.Exception)
             {
@@ -120,7 +122,8 @@ namespace Escola.Controllers
             try
             {
                 _repo.Alterar(turmaAluno);
-                return Ok(_repo.SelecionarTudo());
+                List<TurmaAluno> turmasAlunos = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<TurmaAlunoDto>>(turmasAlunos));
             }
             catch (System.Exception)
             {
@@ -147,7 +150,8 @@ namespace Escola.Controllers
             try
             {
                 _repo.Excluir(id);
-                return Ok(_repo.SelecionarTudo());
+                List<TurmaAluno> turmasAlunos = _repo.SelecionarTudo();
+                return Ok(_mapper.Map<IEnumerable<TurmaAlunoDto>>(turmasAlunos));
             }
             catch (System.Exception)
             {
