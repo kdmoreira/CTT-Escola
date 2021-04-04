@@ -57,12 +57,12 @@ namespace Escola.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(usuario.Nome) || string.IsNullOrEmpty(usuario.Senha))
-                    return BadRequest("Nome ou Senha não foram informados.");
+                //if (string.IsNullOrEmpty(usuario.Nome) || string.IsNullOrEmpty(usuario.Senha))
+                //    return BadRequest("Nome ou Senha não foram informados.");
                 _usuarioRepo.Incluir(usuario);
                 return Ok("Usuário salvo com sucesso!");
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 return StatusCode(500);
             }

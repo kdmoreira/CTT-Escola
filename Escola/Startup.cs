@@ -1,6 +1,7 @@
 ﻿using Escola.Data;
 using Escola.Data.Interface;
 using Escola.Data.Repository;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProjetoEscola.API.AutoMapper;
+using ProjetoEscola.API.Validators;
 using System;
 using System.IO;
 using System.Reflection;
@@ -35,6 +37,15 @@ namespace Escola
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAutoMapper(typeof(ConfigurationMapping));
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new ValidationFilter());
+            })
+                .AddFluentValidation(options =>
+                {
+                    options.RegisterValidatorsFromAssemblyContaining<Startup>();
+                });
 
             // Diferenças entre Transient, Scoped e Singleton (ciclos de vida):
             // Transient: sempre que for solicitado um objeto do conteiner de injeção de

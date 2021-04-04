@@ -71,3 +71,6 @@ C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\obj\Debug\net5.0\Projeto
 C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\obj\Debug\net5.0\ProjetoEscola.API.genruntimeconfig.cache
 C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\Karina Moreira\C#\campinas-tech-talents\Escola\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll

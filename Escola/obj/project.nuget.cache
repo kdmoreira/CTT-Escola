@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "vrlbLimH3Aj3k7aE41uWFsTS0ou4mtSznV0FxHArBfsA9JbYL/Wdv7CTsWV9Abiy7215LMCFp2HGP/4aMpGH8w==",
+  "dgSpecHash": "C5g0C9Q8UtVAgwBKkGSl+9NJy3opf5UDB8DiNSISga9mxyWiraeRHSaduvZgFim+o5aKQ1plYWLF5Wp5p01COw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Karina Moreira\\C#\\campinas-tech-talents\\Escola\\ProjetoEscola.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Karina Moreira\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Karina Moreira\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\Karina Moreira\\.nuget\\packages\\fluentvalidation\\8.6.2\\fluentvalidation.8.6.2.nupkg.sha512",
+    "C:\\Users\\Karina Moreira\\.nuget\\packages\\fluentvalidation.aspnetcore\\8.6.2\\fluentvalidation.aspnetcore.8.6.2.nupkg.sha512",
+    "C:\\Users\\Karina Moreira\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\8.6.2\\fluentvalidation.dependencyinjectionextensions.8.6.2.nupkg.sha512",
     "C:\\Users\\Karina Moreira\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Karina Moreira\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Karina Moreira\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
