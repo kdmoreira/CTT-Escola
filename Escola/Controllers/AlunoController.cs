@@ -107,14 +107,14 @@ namespace Escola.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        [Authorize(Roles = "marketing, manager")] // Se alguém não autorizado tentar acessar, ocorrerá um Forbidden
+        //[Authorize(Roles = "marketing, manager")] // Se alguém não autorizado tentar acessar, ocorrerá um Forbidden
         // Também serve para a controller inteira
         public IActionResult Post([FromBody] Aluno aluno)
         {
             try
             {
-                if (string.IsNullOrEmpty(aluno.Cpf) || string.IsNullOrEmpty(aluno.Nome))
-                    return BadRequest("Cpf ou Nome não foram informados.");
+                if (!ModelState.IsValid)
+                    return BadRequest();
 
                 _repoAluno.IncluirAluno(aluno);
                 List<Aluno> alunos = _repoAluno.SelecionarTudo();

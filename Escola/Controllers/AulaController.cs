@@ -94,8 +94,9 @@ namespace Escola.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(aula.Assunto))
-                    return BadRequest("Assunto da aula não foi informado.");
+                if (!ModelState.IsValid)
+                    return BadRequest();
+                
                 _repoAula.Incluir(aula);
                 List<Aula> aulas = _repoAula.SelecionarTudo();
                 return Ok(_mapper.Map<IEnumerable<AulaDto>>(aulas));

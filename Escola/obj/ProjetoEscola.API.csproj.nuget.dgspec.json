@@ -196,7 +196,7 @@
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
-              "version": "[8.6.2, )"
+              "version": "[9.5.4, )"
             },
             "Microsoft.AspNetCore.Authentication": {
               "target": "Package",

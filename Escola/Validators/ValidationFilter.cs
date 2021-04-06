@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,15 @@ namespace ProjetoEscola.API.Validators
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
             }
+            //if (!context.ModelState.IsValid)
+            //{
+            //    context.Result = new ContentResult()
+            //    {
+            //        StatusCode = 400,
+            //        Content = JsonConvert.SerializeObject(context.ModelState.Values.SelectMany(m => m.Errors)
+            //                     .Select(e => e.ErrorMessage))
+            //    };
+            //}
         }
     }
 }

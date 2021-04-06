@@ -3,8 +3,10 @@ using Escola.Data.Interface;
 using Escola.Domain;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoEscola.API.DTO;
+using ProjetoEscola.API.Validators;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Escola.Controllers
 {
@@ -56,9 +58,10 @@ namespace Escola.Controllers
         public IActionResult Post([FromBody] Usuario usuario)
         {
             try
-            {
-                //if (string.IsNullOrEmpty(usuario.Nome) || string.IsNullOrEmpty(usuario.Senha))
-                //    return BadRequest("Nome ou Senha não foram informados.");
+            {              
+                if (!ModelState.IsValid)
+                    return BadRequest();
+
                 _usuarioRepo.Incluir(usuario);
                 return Ok("Usuário salvo com sucesso!");
             }

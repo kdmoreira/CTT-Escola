@@ -101,8 +101,8 @@ namespace Escola.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(turma.Curso) || turma.Edicao == 0)
-                    return BadRequest("Curso ou Edição não foram informados.");
+                if (!ModelState.IsValid)
+                    return BadRequest();
                 
                 _repo.Incluir(turma);
                 List<Turma> turmas = _repo.SelecionarTudo();

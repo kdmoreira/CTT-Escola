@@ -94,8 +94,8 @@ namespace Escola.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(professor.Nome) || string.IsNullOrEmpty(professor.Email))
-                    return BadRequest("Nome ou Email não foram informados.");
+                if (!ModelState.IsValid)
+                    return BadRequest();
                 
                 _repo.Incluir(professor);
                 List<Professor> professores = _repo.SelecionarTudo();

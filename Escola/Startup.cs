@@ -1,6 +1,8 @@
 ﻿using Escola.Data;
 using Escola.Data.Interface;
 using Escola.Data.Repository;
+using Escola.Domain;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -34,13 +36,17 @@ namespace Escola
         {
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
-                Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.SuppressModelStateInvalidFilter = true;
+                });
 
             services.AddAutoMapper(typeof(ConfigurationMapping));
 
             services.AddMvc(options =>
             {
-                options.Filters.Add(new ValidationFilter());
+                options.Filters.Add<ValidationFilter>();
             })
                 .AddFluentValidation(options =>
                 {
